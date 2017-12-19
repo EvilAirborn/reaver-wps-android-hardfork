@@ -20,15 +20,21 @@ void pixie_attack(void) {
 	int dh_small = get_dh_small();
 
 	if(p->do_pixie) {
-		char cmd[4096];
-		snprintf(cmd, sizeof cmd,
-		"pixiewps -e %s -s %s -z %s -a %s -n %s %s %s",
-		p->pke, p->ehash1, p->ehash2, p->authkey, p->enonce,
-		dh_small ? "-S" : "-r" , dh_small ? "" : p->pkr);
-		printf("executing %s\n", cmd);
-		system(cmd);
-		exit(0);
-	}
+	const char *evilairborn0[4098];
+	const char *evilairborn1[4038];
+	const char *evilairborn2[4038];
+	const char *evilairborn3[4038];
+	const char *evilairborn4[4038];
+	const char *evilairborn5[4038];
+	
+snprintf(evilairborn0, "-e %s",p->pke);
+snprintf(evilairborn1, "-s %s",p->ehash1);
+snprintf(evilairborn2, "-z %s",p->ehash2);
+snprintf(evilairborn3, "-a %s",p->authkey);
+snprintf(evilairborn4, "-n %s",p->enonce);
+snprintf(evilairborn5, "-r %s",p->pkr);
+execl("/data/data/com.hijacker/files/bin/pixiewps","pixiewps","-e",evilairborn0,"-s",evilairborn1,"-z",evilairborn2,"-a",evilairborn3,"-n",evilairborn4,"-r",evilairborn5,(char *)NULL);
+exit(0);}
 	PIXIE_FREE(authkey);
 	PIXIE_FREE(pkr);
 	PIXIE_FREE(pke);
